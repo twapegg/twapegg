@@ -1,4 +1,7 @@
 import type { Metadata } from "next";
+
+import StarBackground from "@/components/ui/star-background";
+
 import { Inter } from "next/font/google";
 import "./globals.css";
 
@@ -16,7 +19,12 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={inter.className}>{children}</body>
+      <body
+        className={`${inter.className} overflow-y-scroll overflow-x-hidden`}
+      >
+        <StarBackground />
+        {children}
+      </body>
     </html>
   );
 }
