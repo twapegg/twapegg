@@ -30,13 +30,13 @@ export default function ContactForm() {
     }
 
     // post request to /api/newsletter
-    // fetch("/api/contact", {
-    //   method: "POST",
-    //   headers: {
-    //     "Content-Type": "application/json",
-    //   },
-    //   body: JSON.stringify({ email, message, full_name }),
-    // });
+    fetch("/api/contact", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ email, message, full_name }),
+    });
 
     setFullName("");
     setEmail("");
