@@ -1,16 +1,15 @@
 import Hero from "@/components/main/Hero";
 import About from "@/components/main/About";
-
+import Projects from "@/components/main/Projects";
+import Footer from "@/components/main/Contact";
 
 export default function Home() {
-  // get the radial gradient to be fixed on the right side of the screen
-  // get width of the screen
-  // get height of the screen
-
   return (
-    <main className="w-full h-screen relative">
-      <Hero />
+    <main className="w-full relative">
+      <Hero title="hello world!" subtitle="I'm Stanley, and I dabble in" highlight="full-stack development"/>
+      <Projects />
       <About />
+      <Footer />
     </main>
   );
 }

@@ -1,8 +1,13 @@
 import React from "react";
 import { AuroraBackground } from "../ui/aurora-background";
-import HeroButton from "../ui/HeroButton";
 
-export default function Hero() {
+interface HeroProps {
+  title: string;
+  subtitle: string;
+  highlight?: string;
+}
+
+export default function Hero({ title, subtitle, highlight = "" }: HeroProps) {
   return (
     <section
       id="hero"
@@ -13,15 +18,13 @@ export default function Hero() {
       </div>
 
       <div className="absolute inset-0 flex flex-col items-center gap-4 justify-center">
-        <p className="text-4xl sm:text-7xl font-bold z-20 text-white ">
-          hello world!
+        <p className="text-6xl md:text-5xl lg:text-8xl text-center font-bold z-20 text-white ">
+          {title}
         </p>
 
-        <p className="text-xl sm:text-lg font-bold z-20 bg-clip-text text-transparent bg-slate-100 ">
-          I dabble with full-stack and machine learning.
+        <p className="text-base sm:text-lg md:text-md z-20 px-24 text-center bg-clip-text text-transparent bg-slate-100 ">
+          {subtitle} <span className="text-navy font-semibold">{highlight}</span>.
         </p>
-
-        <HeroButton />
       </div>
     </section>
   );

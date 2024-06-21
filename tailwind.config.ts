@@ -41,6 +41,12 @@ const config = {
         blue: {
           "100": "#E4ECFF",
         },
+        navy: "#123499",
+        metal: {
+          DEFAULT: "#353735",
+          20: "rgba(44, 44, 44, 0.20)",
+        },
+        grey: "#2c2c2c",
         purple: "#CBACF9",
         border: "hsl(var(--border))",
         input: "hsl(var(--input))",
