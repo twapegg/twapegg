@@ -1,7 +1,8 @@
 export const projects = [
   {
     title: "Bant.ai",
-    description: "AI-powered chatbot assistant that leverages OpenAI's API to provide intelligent conversational experiences. Features real-time chat, Firebase integration for data persistence, and a modern Next.js interface.",
+    description:
+      "AI-powered chatbot assistant that leverages OpenAI's API to provide intelligent conversational experiences. Features real-time chat, Firebase integration for data persistence, and a modern Next.js interface.",
     skills: ["Next.js", "Electro", "Firebase", "Python Flask", "OpenAI API"],
     imageUrl: "/bantai.png",
     imageAlt: "Bant.ai Project",
@@ -10,7 +11,8 @@ export const projects = [
   },
   {
     title: "AlzAware",
-    description: "Machine learning application for early Alzheimer's detection using CNN models. Built with PyTorch for accurate image analysis and Next.js for a user-friendly interface, helping healthcare professionals with diagnostic support.",
+    description:
+      "Machine learning application for early Alzheimer's detection using CNN models. Built with PyTorch for accurate image analysis and Next.js for a user-friendly interface, helping healthcare professionals with diagnostic support.",
     skills: ["Next.js", "Firebase", "Python Flask", "CNN Model (Pytorch)"],
     imageUrl: "/alzaware.png",
     imageAlt: "AlzAware Project",
@@ -19,7 +21,8 @@ export const projects = [
   },
   {
     title: "Aphrodite",
-    description: "Modern web application showcasing elegant UI/UX design principles. Features responsive design, smooth animations, and efficient data management with MongoDB backend integration.",
+    description:
+      "Modern web application showcasing elegant UI/UX design principles. Features responsive design, smooth animations, and efficient data management with MongoDB backend integration.",
     skills: ["Next.js", "MongoDB"],
     imageUrl: "/aphrodite.png",
     imageAlt: "Aphrodite Project",
@@ -29,7 +32,8 @@ export const projects = [
 
   {
     title: "Elysian",
-    description: "Full-stack web application built with React and Express.js, featuring comprehensive user management, real-time data processing, and seamless MongoDB integration for optimal performance.",
+    description:
+      "Full-stack web application built with React and Express.js, featuring comprehensive user management, real-time data processing, and seamless MongoDB integration for optimal performance.",
     skills: ["React", "MongoDB", "ExpressJS"],
     imageUrl: "/elysian.png",
     imageAlt: "Elysian Project",
