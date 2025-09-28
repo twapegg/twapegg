@@ -1,8 +1,8 @@
 import { NextResponse } from "next/server";
 import nodemailer from "nodemailer";
 
-export const POST = async (request) => {
-  const { email, full_name, message } = await request.json();
+export const POST = async (request: Request) => {
+  const { email, full_name, message }: { email: string; full_name: string; message: string } = await request.json();
 
   // get first name from full name
   const firstName = full_name.split(" ")[0];
@@ -45,7 +45,7 @@ export const POST = async (request) => {
   );
 };
 
-function toTitleCase(str) {
+function toTitleCase(str: string): string {
   return str.replace(
     /\w\S*/g,
     (text) => text.charAt(0).toUpperCase() + text.substring(1).toLowerCase()

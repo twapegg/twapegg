@@ -23,7 +23,8 @@ export default function Hero({ title, subtitle, highlight = "" }: HeroProps) {
         </p>
 
         <p className="text-base sm:text-lg md:text-md z-20 px-24 text-center bg-clip-text text-transparent bg-slate-100 ">
-          {subtitle} <span className="text-navy font-semibold">{highlight}</span>.
+          {subtitle}{" "}
+          <span className="text-navy font-semibold">{highlight}</span>
         </p>
       </div>
     </section>

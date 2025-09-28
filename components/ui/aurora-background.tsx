@@ -1,6 +1,6 @@
 "use client";
 import { cn } from "@/utils/cn";
-import React, { ReactNode } from "react";
+import React from "react";
 
 interface AuroraBackgroundProps extends React.HTMLProps<HTMLDivElement> {
   showRadialGradient?: boolean;
@@ -27,7 +27,7 @@ export const AuroraBackground = ({
               `
             [--white-gradient:repeating-linear-gradient(100deg,var(--white)_0%,var(--white)_7%,var(--transparent)_10%,var(--transparent)_12%,var(--white)_16%)]
             [--dark-gradient:repeating-linear-gradient(100deg,var(--black)_0%,var(--black)_7%,var(--transparent)_10%,var(--transparent)_12%,var(--black)_16%)]
-            [--aurora:repeating-linear-gradient(100deg,var(--yellow-100)_10%,var(--yellow-200)_15%,var(--orange-200)_20%,var(--yellow-400)_25%,var(--yellow-300)_30%)]
+            [--aurora:repeating-linear-gradient(100deg,var(--yellow-900)_10%,var(--yellow-900)_15%,var(--orange-900)_20%,var(--yellow-900)_25%,var(--yellow-900)_30%)]
             [background-image:var(--dark-gradient),var(--aurora)]
             [background-size:100%,_200%]0
             [background-position:50%_50%,50%_50%]
@@ -44,7 +44,6 @@ export const AuroraBackground = ({
             )}
           ></div>
         </div>
-
       </div>
     </main>
   );

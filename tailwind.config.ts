@@ -41,7 +41,7 @@ const config = {
         blue: {
           "100": "#E4ECFF",
         },
-        navy: "#123499",
+        navy: "#7fc7ba",
         metal: {
           DEFAULT: "#353735",
           20: "rgba(44, 44, 44, 0.20)",

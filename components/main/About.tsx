@@ -4,7 +4,7 @@ import AnimatedText from "../ui/animated-text";
 
 export default function About() {
   return (
-    <section id="about" className="z-50 h-auto md:h-screen">
+    <section id="about" className="z-50 py-20 md:py-32">
       <div className="container">
         <AnimatedText
           text={[{ text: "About" }, { text: "Me", color: "navy" }]}

@@ -35,7 +35,7 @@ const defaultAnimations = {
 
 const AnimatedText = ({
   text,
-  el: Wrapper = "p",
+  el: Wrapper = "p" as keyof JSX.IntrinsicElements,
   className,
   once,
   repeatDelay,
@@ -88,7 +88,6 @@ const AnimatedText = ({
                 <span
                   className={`inline-block text-${item?.color}`}
                   key={`${word}-${wordIndex}`}
-
                 >
                   {word.split("").map((char, charIndex) => (
                     <motion.span

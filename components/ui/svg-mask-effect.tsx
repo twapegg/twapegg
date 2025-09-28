@@ -52,7 +52,7 @@ export const MaskContainer = ({
             mousePosition.y - maskSize / 2
           }px`,
           WebkitMaskSize: `${maskSize}px`,
-        }}
+        } as any}
         transition={{ type: "tween", ease: "backOut", duration: 0.1 }}
       >
         <div className="absolute inset-0 bg-black h-full w-full z-0 opacity-50" />

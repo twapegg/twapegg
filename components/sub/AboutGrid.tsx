@@ -9,23 +9,27 @@ import {
   FaGithub,
   FaInstagram,
   FaDiscord,
+  FaTrophy,
+  FaMedal,
+  FaAward,
 } from "react-icons/fa";
 import {
-  SiCplusplus,
   SiExpress,
   SiFigma,
   SiFramer,
   SiGithub,
+  SiInstagram,
   SiJavascript,
+  SiLinkedin,
   SiMongodb,
   SiMysql,
   SiNextdotjs,
   SiNodedotjs,
+  SiOpenai,
   SiPrisma,
   SiPytorch,
   SiReact,
   SiTailwindcss,
-  SiTensorflow,
   SiTypescript,
 } from "react-icons/si";
 
@@ -39,14 +43,70 @@ import {
   useInView,
   useMotionValue,
 } from "framer-motion";
+import { awards, techStack, contacts } from "@/data";
 
 export default function AboutGrid() {
-  const scrollRef = useRef(null);
-  const isInView = useInView(scrollRef, { amount: 0.3 });
+  const scrollRef = useRef<HTMLDivElement>(null);
+  const isInView = useInView(scrollRef as any, { amount: 0.3 });
   const scrollControls = useAnimation();
 
   const [ref, { width }] = useMeasure();
   const xTranslation = useMotionValue(0);
+
+  const getAwardIcon = (iconType: string) => {
+    switch (iconType) {
+      case "trophy":
+        return FaTrophy;
+      case "medal":
+        return FaMedal;
+      case "award":
+        return FaAward;
+      default:
+        return FaTrophy;
+    }
+  };
+
+  const getTechIcon = (iconType: string) => {
+    switch (iconType) {
+      case "SiReact":
+        return SiReact;
+      case "SiNextdotjs":
+        return SiNextdotjs;
+      case "SiTypescript":
+        return SiTypescript;
+      case "SiTailwindcss":
+        return SiTailwindcss;
+      case "SiNodedotjs":
+        return SiNodedotjs;
+      case "SiExpress":
+        return SiExpress;
+      case "FaPython":
+        return FaPython;
+      case "SiMongodb":
+        return SiMongodb;
+      case "SiPytorch":
+        return SiPytorch;
+      case "SiOpenai":
+        return SiOpenai;
+      default:
+        return SiReact;
+    }
+  };
+
+  const getContactIcon = (iconType: string) => {
+    switch (iconType) {
+      case "IoMail":
+        return IoMail;
+      case "FaLinkedin":
+        return FaLinkedin;
+      case "FaGithub":
+        return FaGithub;
+      case "FaInstagram":
+        return FaInstagram;
+      default:
+        return IoMail;
+    }
+  };
 
   const variants = {
     hidden: {
@@ -86,159 +146,248 @@ export default function AboutGrid() {
   return (
     <div
       ref={scrollRef}
-      className="grid md:grid-cols-4 grid-cols-1 md:grid-rows-4 grid-rows-auto h-full md:mx-16 lg:mx-32 my-20 gap-4"
+      className="grid grid-cols-1 md:grid-cols-6 lg:grid-cols-8 gap-4 md:gap-6 max-w-7xl mx-auto px-4 md:px-8 mt-16"
     >
       <motion.div
-        className="bg-grey/10 border border-white/50 backdrop-filter backdrop-blur-[1.25px] md:row-span-2 row-span-1 col-span-1 rounded-3xl md:h-full h-[20rem] relative w-full"
+        className="col-span-1 md:col-span-3 lg:col-span-3 bg-gradient-to-br from-grey/20 to-grey/5 border border-white/20 backdrop-filter backdrop-blur-md rounded-2xl p-1 group hover:border-navy/50 transition-all duration-500"
         initial="hidden"
         animate={scrollControls}
         variants={variants}
       >
-        <Image
-          src="/elon.jpg"
-          fill
-          alt="sample"
-          className="object-cover w-full h-full rounded-3xl"
-        />
+        <div className="relative h-80 md:h-96 w-full overflow-hidden rounded-xl">
+          <Image
+            src="/stan.jpg"
+            fill
+            alt="Stanley Altonaga - Full Stack Developer"
+            className="object-cover object-top w-full h-full group-hover:scale-105 transition-transform duration-500"
+            sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+            priority
+          />
+          <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/10 to-transparent" />
+          <div className="absolute bottom-4 left-4 right-4">
+            <h3 className="text-xl font-bold text-white drop-shadow-lg">
+              Stanley Altonaga
+            </h3>
+            <p className="text-white/90 text-sm font-medium drop-shadow-md">
+              Full-Stack | AI/ML
+            </p>
+          </div>
+        </div>
       </motion.div>
 
       <motion.div
         initial="hidden"
         animate={scrollControls}
         variants={variants}
-        className="bg-grey/10 border border-white/50 backdrop-filter backdrop-blur-[1.25px] rounded-3xl md:col-span-2 col-span-1 row-span-1 p-4 xl:px-12 text-white flex flex-col items-left justify-center gap-4 md:gap-2 xl:gap-4 text-lg md:text-xs lg:text-sm 2xl:text-lg"
+        className="col-span-1 md:col-span-3 lg:col-span-5 bg-gradient-to-br from-grey/20 to-grey/5 border border-white/20 backdrop-filter backdrop-blur-md rounded-2xl p-6 md:p-8 text-white hover:border-navy/50 transition-all duration-500"
       >
-        <p>
-          Based in the Philippines, I'm currently a third-year student at{" "}
-          <a href="https://su.edu.ph/" target="_blank">
-            <span className="hover:text-navy transition-colors duration-500 font-bold">
-              Silliman University
+        <h2 className="text-2xl md:text-3xl font-bold mb-4 bg-gradient-to-r from-white to-white/80 bg-clip-text text-transparent">
+          Summary
+        </h2>
+        <div className="space-y-4 text-white/90 leading-relaxed">
+          <p className="text-base md:text-lg">
+            Based in the Philippines, I&apos;m a fourth-year student at{" "}
+            <a
+              href="https://su.edu.ph/"
+              target="_blank"
+              className="relative group"
+            >
+              <span className="text-navy font-semibold hover:text-navy/80 transition-colors duration-300 border-b border-navy/30 hover:border-navy/60">
+                Silliman University
+              </span>
+            </a>
+            , building at the intersection of web development and AI/ML.
+          </p>
+          <p className="text-base md:text-lg flex items-center gap-2">
+            <span>
+              My focus today is on{" "}
+              <span className="text-navy font-semibold hover:text-navy/80 transition-colors duration-300 border-navy/30 hover:border-navy/60">
+                generative and agentic AI
+              </span>
+              , and on designing multi-pipeline systems where data, models, and
+              automation click together like puzzle pieces.
             </span>
-          </a>
-          . I primarily work with full-stack web development and machine
-          learning. I also like to keep updated with AI and computational
-          neuroscience developments. 💻
-        </p>
-        <p>Off the clock, I'm more or less rotting on video games! 🎮</p>
-      </motion.div>
-      <motion.div
-        initial="hidden"
-        animate={scrollControls}
-        variants={variants}
-        className="bg-grey/10 border border-white/50 backdrop-filter backdrop-blur-[1.25px] rounded-3xl col-span-1 row-span-1 text-white p-4 font-bold flex flex-col items-center justify-center gap-0 md:gap-4 md:text-xl lg:text-xl"
-      >
-        <h1 className=" text-4xl md:text-4xl lg:text-5xl 2xl:text-7xl">4+</h1>
-        <p className=" text-lg md:text-xl lg:text-2xl text-center 2xl:px-12">
-          years of coding experience
-        </p>
-      </motion.div>
-      <motion.div
-        initial="hidden"
-        animate={scrollControls}
-        variants={variants}
-        className="bg-grey/10 border border-white/50 backdrop-filter backdrop-blur-[1.25px] rounded-3xl col-span-1 row-span-1 text-white py-4 px-4 md:px-4 xl:px-12 flex flex-col gap-4 items-center justify-center text-center"
-      >
-        <h1 className="text-xl md:text-lg lg:text-xl xl:text-3xl font-bold">
-          Full-stack Development
-        </h1>
-        <p className="text-md sm:text-sm md:text-sm xl:text-base">
-          From a product's exploration to implementation.
-        </p>
-      </motion.div>
-      <motion.div
-        initial="hidden"
-        animate={scrollControls}
-        variants={variants}
-        className="bg-grey/10 border border-white/50 backdrop-filter backdrop-blur-[1.25px] rounded-3xl col-span-1 row-span-1 text-white py-4 px-4 md:px-4 xl:px-12 flex flex-col gap-4 items-center justify-center text-center"
-      >
-        <h1 className="text-xl xl:text-3xl font-bold">SEO</h1>
-        <p className="text-md sm:text-sm md:text-sm xl:text-base">
-          Propel websites to stellar heights in search engine rankings.
-        </p>
-      </motion.div>
-      <motion.div
-        initial="hidden"
-        animate={scrollControls}
-        variants={variants}
-        className="bg-grey/10 border border-white/50 backdrop-filter backdrop-blur-[1.25px] rounded-3xl col-span-1 row-span-1 text-white p-4 font-bold flex flex-col gap-3"
-      >
-        <h1 className="text-xl md:text-base lg:text-lg 2xl:text-2xl flex flex-row items-center gap-4 md:gap-1 lg:gap-4">
-          Let's connect!
-          <span>
-            <FaArrowDown />
-          </span>
-        </h1>
-        <ul className="list-disc lg:pl-7 md:pl-4 pl-7 text-lg md:text-base xl:text-xl ">
-          <li>
-            <a
-              href="https://www.linkedin.com/in/stanleyaltonaga"
-              target="_blank"
-              className="flex flex-row items-center gap-2 hover:text-navy transition-colors duration-500"
-            >
-              <span>
-                <FaLinkedin />
+          </p>
+          <p className="text-base md:text-lg flex items-center gap-2">
+            <span>
+              I&apos;m passionate about turning ideas into real-world solutions,{" "}
+              <span className="text-navy font-semibold hover:text-navy/80 transition-colors duration-300 border-navy/30 hover:border-navy/60">
+                earning recognition in regional and provincial hackathons.
               </span>
-              LinkedIn
-            </a>
-          </li>
-          <li>
-            <a
-              href="https://www.github.com/twapegg"
-              target="_blank"
-              className="flex flex-row items-center gap-2 hover:text-navy transition-colors duration-500"
-            >
-              <span>
-                <FaGithub />
-              </span>
-              Github
-            </a>
-          </li>
-          <li>
-            <a
-              href="https://discord.com/users/726152625006968893"
-              target="_blank"
-              className="flex flex-row items-center gap-2 hover:text-navy transition-colors duration-500"
-            >
-              <span>
-                <FaDiscord />
-              </span>
-              Discord
-            </a>
-          </li>
-          <li>
-            <a
-              href="https://www.instagram.com/ppugppugi/"
-              target="_blank"
-              className="flex flex-row items-center gap-2 hover:text-navy transition-colors duration-500"
-            >
-              <span>
-                <FaInstagram />
-              </span>
-              Instagram
-            </a>
-          </li>
-        </ul>
+            </span>
+          </p>
+          <p className="text-base md:text-lg flex items-center gap-2">
+            <span>
+              Outside of code, I&apos;m drawn to{" "}
+              <span className="text-navy font-semibold hover:text-navy/80 transition-colors duration-300 border-navy/30 hover:border-navy/60">
+                neuroscience and the future of brain-computer interfaces.
+              </span>{" "}
+              Off the clock, I&apos;m more or less rotting in video games 🎮
+            </span>
+          </p>
+        </div>
       </motion.div>
 
       <motion.div
         initial="hidden"
         animate={scrollControls}
         variants={variants}
-        className="bg-grey/10 border border-white/50 backdrop-filter backdrop-blur-[1.25px] rounded-3xl col-span-1 md:col-span-4 row-span-1 h-[5rem] flex flex-row gap-10 text-white text-3xl items-center overflow-hidden"
+        className="col-span-1 md:col-span-2 lg:col-span-2 bg-gradient-to-br from-navy/20 to-navy/5 border border-navy/30 backdrop-filter backdrop-blur-md rounded-2xl p-6 text-white flex flex-col items-center justify-center text-center hover:border-navy/60 hover:from-navy/30 hover:to-navy/10 transition-all duration-500 group"
+      >
+        <div className="text-6xl md:text-7xl font-black bg-gradient-to-b from-navy to-navy/70 bg-clip-text text-transparent mb-2 group-hover:scale-110 transition-transform duration-300">
+          10+
+        </div>
+        <p className="text-lg font-semibold text-navy/90 mb-1">Months</p>
+        <p className="text-sm text-white/70">Professional Coding Experience</p>
+      </motion.div>
+      <motion.div
+        initial="hidden"
+        animate={scrollControls}
+        variants={variants}
+        className="col-span-1 md:col-span-4 lg:col-span-6 bg-gradient-to-br from-navy/20 to-navy/5 border border-navy/30 backdrop-filter backdrop-blur-md rounded-2xl p-6 text-white hover:border-navy/60 transition-all duration-500 group"
+      >
+        <h3 className="text-xl font-bold mb-6 text-navy flex items-center gap-2">
+          <span>Tech Stack</span>
+          <span className="text-2xl group-hover:rotate-12 transition-transform duration-300">
+            🚀
+          </span>
+        </h3>
+
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          {techStack.map((category, categoryIndex) => (
+            <div key={categoryIndex} className="space-y-3">
+              <h4 className="text-sm font-semibold text-navy/80 uppercase tracking-wider">
+                {category.category}
+              </h4>
+              <div className="space-y-2">
+                {category.technologies.map((tech, techIndex) => {
+                  const IconComponent =
+                    tech.icon === "emoji" ? null : getTechIcon(tech.icon);
+                  return (
+                    <div
+                      key={techIndex}
+                      className="flex items-center gap-2 p-2 rounded-lg bg-white/5 hover:bg-navy/20 transition-all duration-300 group/item"
+                    >
+                      {tech.icon === "emoji" ? (
+                        <span className="text-lg text-navy font-bold group-hover/item:scale-110 transition-transform duration-300">
+                          🦜
+                        </span>
+                      ) : (
+                        IconComponent && (
+                          <IconComponent className="text-lg text-navy group-hover/item:scale-110 transition-transform duration-300" />
+                        )
+                      )}
+                      <span className="text-sm">{tech.name}</span>
+                    </div>
+                  );
+                })}
+              </div>
+            </div>
+          ))}
+        </div>
+      </motion.div>
+
+      <motion.div
+        initial="hidden"
+        animate={scrollControls}
+        variants={variants}
+        className="col-span-1 md:col-span-3 lg:col-span-4 bg-gradient-to-br from-grey/20 to-grey/5 border border-white/20 backdrop-filter backdrop-blur-md rounded-2xl p-6 text-white hover:border-navy/50 transition-all duration-500"
+      >
+        <h3 className="text-xl font-bold mb-4 flex items-center gap-2">
+          <span>Let&apos;s Connect</span>
+          <span className="text-navy">🤝</span>
+        </h3>
+        <div className="flex flex-col gap-3">
+          {contacts.map((contact, index) => {
+            const IconComponent = getContactIcon(contact.icon);
+            return (
+              <a
+                key={index}
+                href={contact.url}
+                {...(contact.external && {
+                  target: "_blank",
+                  rel: "noopener noreferrer",
+                })}
+                className="flex items-center justify-between w-full p-3 rounded-lg bg-white/5 hover:bg-navy/20 hover:text-navy transition-all duration-300 group"
+              >
+                <div className="flex items-center gap-3 flex-1">
+                  <IconComponent className="text-xl group-hover:scale-110 transition-transform duration-300" />
+                  <span className="font-medium">{contact.name}</span>
+                </div>
+              </a>
+            );
+          })}
+        </div>
+      </motion.div>
+
+      <motion.div
+        initial="hidden"
+        animate={scrollControls}
+        variants={variants}
+        className="col-span-1 md:col-span-3 lg:col-span-4 bg-gradient-to-br from-navy/20 to-navy/5 border border-navy/30 backdrop-filter backdrop-blur-md rounded-2xl p-6 text-white hover:border-navy/60 hover:from-navy/30 hover:to-navy/10 transition-all duration-500 group"
+      >
+        <h3 className="text-xl font-bold mb-4 flex items-center gap-2">
+          <span>Awards & Recognition</span>
+          <FaTrophy className="text-navy group-hover:rotate-12 transition-transform duration-300" />
+        </h3>
+        <div className="space-y-3">
+          {awards.map((award, index) => {
+            const IconComponent = getAwardIcon(award.icon);
+            return (
+              <div
+                key={index}
+                className="flex items-center gap-3 p-3 rounded-lg bg-white/5 hover:bg-navy/20 transition-all duration-300 group/item"
+              >
+                <IconComponent
+                  className={`text-xl ${award.iconColor} group-hover/item:scale-110 transition-transform duration-300`}
+                />
+                <div className="flex-1">
+                  <span className="font-medium text-sm block">
+                    {award.title}
+                  </span>
+                  <span className="text-xs text-white/70">{award.event}</span>
+                  <span className="text-xs text-white/50 block mt-1">
+                    {award.date}
+                  </span>
+                </div>
+              </div>
+            );
+          })}
+        </div>
+      </motion.div>
+
+      <motion.div
+        initial="hidden"
+        animate={scrollControls}
+        variants={variants}
+        className="col-span-1 md:col-span-6 lg:col-span-8 bg-gradient-to-r from-grey/20 via-grey/10 to-grey/20 border border-white/20 backdrop-filter backdrop-blur-md rounded-2xl h-20 flex items-center overflow-hidden hover:border-navy/50 transition-all duration-500 group"
       >
         <motion.div
           ref={ref}
-          className="flex flex-row gap-12 max-w-fit"
+          className="flex items-center gap-8 text-4xl text-white/80 group-hover:text-white transition-colors duration-500"
           style={{ x: xTranslation }}
         >
-          {icons.map((icon) => icon)}
+          {icons.map((icon, index) => (
+            <div
+              key={index}
+              className="hover:text-navy hover:scale-125 transition-all duration-300 cursor-pointer"
+            >
+              {icon}
+            </div>
+          ))}
         </motion.div>
         <motion.div
-          ref={ref}
-          className="flex flex-row gap-12 max-w-fit"
+          className="flex items-center gap-8 text-4xl text-white/80 group-hover:text-white transition-colors duration-500"
           style={{ x: xTranslation }}
         >
-          {icons.map((icon) => icon)}
+          {icons.map((icon, index) => (
+            <div
+              key={`duplicate-${index}`}
+              className="hover:text-navy hover:scale-125 transition-all duration-300 cursor-pointer"
+            >
+              {icon}
+            </div>
+          ))}
         </motion.div>
       </motion.div>
     </div>
@@ -248,7 +397,6 @@ export default function AboutGrid() {
 const icons = [
   <FaPython key="python" />,
   <SiJavascript key="javascript" />,
-  <SiCplusplus key="cplusplus" />,
   <SiNodedotjs key="nodejs" />,
   <SiExpress key="express" />,
   <SiTypescript key="typescript" />,
@@ -261,6 +409,6 @@ const icons = [
   <SiFramer key="framer" />,
   <SiFigma key="figma" />,
   <SiGithub key="github" />,
-  <SiTensorflow key="tensorflow" />,
   <SiPytorch key="pytorch" />,
+  <SiOpenai key="openai" />,
 ];
