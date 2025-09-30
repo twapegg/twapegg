@@ -35,9 +35,9 @@ const defaultAnimations = {
 
 const AnimatedText = ({
   text,
-  el: Wrapper = "p" as keyof JSX.IntrinsicElements,
+  el = "p" as keyof JSX.IntrinsicElements,
   className,
-  once,
+  once = false,
   repeatDelay,
   animation = defaultAnimations,
 }: AnimatedTextProps) => {
@@ -65,10 +65,12 @@ const AnimatedText = ({
     }
 
     return () => clearTimeout(timeout);
-  }, [isInView]);
+  }, [isInView, controls, repeatDelay]);
 
+  const Element = el as any;
+  
   return (
-    <p className={className}>
+    <Element className={className}>
       <span className="sr-only">{textArray.join(" ")}</span>
       <motion.span
         ref={ref}
@@ -104,7 +106,7 @@ const AnimatedText = ({
           </span>
         ))}
       </motion.span>
-    </p>
+    </Element>
   );
 };
 

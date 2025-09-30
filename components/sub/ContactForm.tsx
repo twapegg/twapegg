@@ -1,59 +1,94 @@
 "use client";
 
 import { toast, ToastContainer } from "react-toastify";
-import { useState } from "react";
+import { useState, useCallback, memo } from "react";
 import "react-toastify/dist/ReactToastify.css";
 
-export default function ContactForm() {
+function ContactForm() {
   const [email, setEmail] = useState("");
   const [message, setMessage] = useState("");
-  const [full_name, setFullName] = useState("");
+  const [fullName, setFullName] = useState("");
+  const [isSubmitting, setIsSubmitting] = useState(false);
 
-  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
+  const handleSubmit = useCallback(
+    async (e: React.FormEvent<HTMLFormElement>) => {
+      e.preventDefault();
 
-    // check if email is valid
-    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    if (!emailRegex.test(email)) {
-      // show error toast
+      if (isSubmitting) return;
 
-      toast.error("Invalid email address!", {
-        position: "top-right",
-        autoClose: 5000,
-        hideProgressBar: false,
-        closeOnClick: true,
-        pauseOnHover: true,
-        draggable: true,
-        progress: undefined,
-        theme: "colored",
-      });
-    }
+      // Validation
+      const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+      if (!emailRegex.test(email)) {
+        toast.error("Invalid email address!", {
+          position: "top-right",
+          autoClose: 5000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          theme: "colored",
+        });
+        return;
+      }
 
-    // post request to /api/newsletter
-    fetch("/api/contact", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({ email, message, full_name }),
-    });
+      if (!fullName.trim() || !message.trim()) {
+        toast.error("Please fill in all fields!", {
+          position: "top-right",
+          autoClose: 5000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          theme: "colored",
+        });
+        return;
+      }
 
-    setFullName("");
-    setEmail("");
-    setMessage("");
+      setIsSubmitting(true);
 
-    // show success toast
-    toast.success("Message sent!", {
-      position: "top-right",
-      autoClose: 5000,
-      hideProgressBar: true,
-      closeOnClick: true,
-      pauseOnHover: true,
-      draggable: true,
-      progress: undefined,
-      theme: "dark",
-    });
-  };
+      try {
+        const response = await fetch("/api/contact", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({ email, message, full_name: fullName }),
+        });
+
+        if (!response.ok) {
+          throw new Error("Failed to send message");
+        }
+
+        // Clear form on success
+        setFullName("");
+        setEmail("");
+        setMessage("");
+
+        toast.success("Message sent successfully!", {
+          position: "top-right",
+          autoClose: 5000,
+          hideProgressBar: true,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          theme: "dark",
+        });
+      } catch (error) {
+        toast.error("Failed to send message. Please try again.", {
+          position: "top-right",
+          autoClose: 5000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          theme: "colored",
+        });
+      } finally {
+        setIsSubmitting(false);
+      }
+    },
+    [email, message, fullName, isSubmitting]
+  );
   return (
     <>
       <ToastContainer
@@ -82,7 +117,7 @@ export default function ContactForm() {
             placeholder=" "
             required
             onChange={(e) => setFullName(e.target.value)}
-            value={full_name}
+            value={fullName}
           />
           <label
             htmlFor="full_name"
@@ -129,11 +164,14 @@ export default function ContactForm() {
         </div>
         <button
           type="submit"
-          className="bg-grey/10 border border-white/50 backdrop-filter backdrop-blur-[1.25px] rounded-3xl py-4 w-full text-lg text-white hover:border-navy hover:bg-navy/10 hover:text-navy hover:font-bold transition-all duration-500"
+          disabled={isSubmitting}
+          className="bg-grey/10 border border-white/50 backdrop-filter backdrop-blur-[1.25px] rounded-3xl py-4 w-full text-lg text-white hover:border-navy hover:bg-navy/10 hover:text-navy hover:font-bold transition-all duration-500 disabled:opacity-50 disabled:cursor-not-allowed"
         >
-          submit
+          {isSubmitting ? "Sending..." : "Submit"}
         </button>
       </form>
     </>
   );
 }
+
+export default memo(ContactForm);

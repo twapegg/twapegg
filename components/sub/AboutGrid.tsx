@@ -4,11 +4,9 @@ import Image from "next/image";
 import React, { useEffect, useRef } from "react";
 import {
   FaPython,
-  FaArrowDown,
   FaLinkedin,
   FaGithub,
   FaInstagram,
-  FaDiscord,
   FaTrophy,
   FaMedal,
   FaAward,
@@ -18,15 +16,11 @@ import {
   SiFigma,
   SiFramer,
   SiGithub,
-  SiInstagram,
   SiJavascript,
-  SiLinkedin,
   SiMongodb,
-  SiMysql,
   SiNextdotjs,
   SiNodedotjs,
   SiOpenai,
-  SiPrisma,
   SiPytorch,
   SiReact,
   SiTailwindcss,
@@ -47,7 +41,7 @@ import { awards, techStack, contacts } from "@/data";
 
 export default function AboutGrid() {
   const scrollRef = useRef<HTMLDivElement>(null);
-  const isInView = useInView(scrollRef as any, { amount: 0.3 });
+  const isInView = useInView(scrollRef as any, { amount: 0.1 });
   const scrollControls = useAnimation();
 
   const [ref, { width }] = useMeasure();
@@ -111,19 +105,22 @@ export default function AboutGrid() {
   const variants = {
     hidden: {
       opacity: 0,
-      scale: 0.7,
+      scale: 0.8,
+      y: 20,
       transition: {
-        duration: 0.5,
+        duration: 0.3,
       },
     },
     visible: {
       opacity: 1,
       scale: 1,
+      y: 0,
       transition: {
         duration: 0.5,
+        ease: "easeOut",
       },
     },
-  };
+  } as const;
 
   useEffect(() => {
     if (isInView) {
@@ -146,7 +143,7 @@ export default function AboutGrid() {
   return (
     <div
       ref={scrollRef}
-      className="grid grid-cols-1 md:grid-cols-6 lg:grid-cols-8 gap-4 md:gap-6 max-w-7xl mx-auto px-4 md:px-8 mt-16"
+      className="grid grid-cols-1 md:grid-cols-6 lg:grid-cols-8 gap-4 md:gap-6 max-w-7xl mx-auto px-4 sm:px-6 md:px-8 mt-8 md:mt-16"
     >
       <motion.div
         className="col-span-1 md:col-span-3 lg:col-span-3 bg-gradient-to-br from-grey/20 to-grey/5 border border-white/20 backdrop-filter backdrop-blur-md rounded-2xl p-1 group hover:border-navy/50 transition-all duration-500"
@@ -154,7 +151,7 @@ export default function AboutGrid() {
         animate={scrollControls}
         variants={variants}
       >
-        <div className="relative h-80 md:h-96 w-full overflow-hidden rounded-xl">
+        <div className="relative h-64 sm:h-80 md:h-96 w-full overflow-hidden rounded-xl">
           <Image
             src="/stan.jpg"
             fill
@@ -179,13 +176,13 @@ export default function AboutGrid() {
         initial="hidden"
         animate={scrollControls}
         variants={variants}
-        className="col-span-1 md:col-span-3 lg:col-span-5 bg-gradient-to-br from-grey/20 to-grey/5 border border-white/20 backdrop-filter backdrop-blur-md rounded-2xl p-6 md:p-8 text-white hover:border-navy/50 transition-all duration-500"
+        className="col-span-1 md:col-span-3 lg:col-span-5 bg-gradient-to-br from-grey/20 to-grey/5 border border-white/20 backdrop-filter backdrop-blur-md rounded-2xl p-4 sm:p-6 md:p-8 text-white hover:border-navy/50 transition-all duration-500"
       >
-        <h2 className="text-2xl md:text-3xl font-bold mb-4 bg-gradient-to-r from-white to-white/80 bg-clip-text text-transparent">
+        <h2 className="text-xl sm:text-2xl md:text-3xl font-bold mb-3 sm:mb-4 bg-gradient-to-r from-white to-white/80 bg-clip-text text-transparent">
           Summary
         </h2>
-        <div className="space-y-4 text-white/90 leading-relaxed">
-          <p className="text-base md:text-lg">
+        <div className="space-y-3 sm:space-y-4 text-white/90 leading-relaxed">
+          <p className="text-sm sm:text-base md:text-lg">
             Based in the Philippines, I&apos;m a fourth-year student at{" "}
             <a
               href="https://su.edu.ph/"
@@ -198,7 +195,7 @@ export default function AboutGrid() {
             </a>
             , building at the intersection of web development and AI/ML.
           </p>
-          <p className="text-base md:text-lg flex items-center gap-2">
+          <p className="text-sm sm:text-base md:text-lg flex items-center gap-2">
             <span>
               My focus today is on{" "}
               <span className="text-navy font-semibold hover:text-navy/80 transition-colors duration-300 border-navy/30 hover:border-navy/60">
@@ -208,7 +205,7 @@ export default function AboutGrid() {
               automation click together like puzzle pieces.
             </span>
           </p>
-          <p className="text-base md:text-lg flex items-center gap-2">
+          <p className="text-sm sm:text-base md:text-lg flex items-center gap-2">
             <span>
               I&apos;m passionate about turning ideas into real-world solutions,{" "}
               <span className="text-navy font-semibold hover:text-navy/80 transition-colors duration-300 border-navy/30 hover:border-navy/60">
@@ -216,7 +213,7 @@ export default function AboutGrid() {
               </span>
             </span>
           </p>
-          <p className="text-base md:text-lg flex items-center gap-2">
+          <p className="text-sm sm:text-base md:text-lg flex items-center gap-2">
             <span>
               Outside of code, I&apos;m drawn to{" "}
               <span className="text-navy font-semibold hover:text-navy/80 transition-colors duration-300 border-navy/30 hover:border-navy/60">
@@ -232,28 +229,32 @@ export default function AboutGrid() {
         initial="hidden"
         animate={scrollControls}
         variants={variants}
-        className="col-span-1 md:col-span-2 lg:col-span-2 bg-gradient-to-br from-navy/20 to-navy/5 border border-navy/30 backdrop-filter backdrop-blur-md rounded-2xl p-6 text-white flex flex-col items-center justify-center text-center hover:border-navy/60 hover:from-navy/30 hover:to-navy/10 transition-all duration-500 group"
+        className="col-span-1 md:col-span-2 lg:col-span-2 bg-gradient-to-br from-navy/20 to-navy/5 border border-navy/30 backdrop-filter backdrop-blur-md rounded-2xl p-4 sm:p-6 text-white flex flex-col items-center justify-center text-center hover:border-navy/60 hover:from-navy/30 hover:to-navy/10 transition-all duration-500 group min-h-[120px] sm:min-h-[140px]"
       >
-        <div className="text-6xl md:text-7xl font-black bg-gradient-to-b from-navy to-navy/70 bg-clip-text text-transparent mb-2 group-hover:scale-110 transition-transform duration-300">
+        <div className="text-5xl sm:text-6xl md:text-7xl font-black bg-gradient-to-b from-navy to-navy/70 bg-clip-text text-transparent mb-2 group-hover:scale-110 transition-transform duration-300">
           10+
         </div>
-        <p className="text-lg font-semibold text-navy/90 mb-1">Months</p>
-        <p className="text-sm text-white/70">Professional Coding Experience</p>
+        <p className="text-base sm:text-lg font-semibold text-navy/90 mb-1">
+          Months
+        </p>
+        <p className="text-xs sm:text-sm text-white/70 text-center px-2">
+          Professional Coding Experience
+        </p>
       </motion.div>
       <motion.div
         initial="hidden"
         animate={scrollControls}
         variants={variants}
-        className="col-span-1 md:col-span-4 lg:col-span-6 bg-gradient-to-br from-navy/20 to-navy/5 border border-navy/30 backdrop-filter backdrop-blur-md rounded-2xl p-6 text-white hover:border-navy/60 transition-all duration-500 group"
+        className="col-span-1 md:col-span-4 lg:col-span-6 bg-gradient-to-br from-navy/20 to-navy/5 border border-navy/30 backdrop-filter backdrop-blur-md rounded-2xl p-4 sm:p-6 text-white hover:border-navy/60 transition-all duration-500 group"
       >
-        <h3 className="text-xl font-bold mb-6 text-navy flex items-center gap-2">
+        <h3 className="text-lg sm:text-xl font-bold mb-4 sm:mb-6 text-navy flex items-center gap-2">
           <span>Tech Stack</span>
-          <span className="text-2xl group-hover:rotate-12 transition-transform duration-300">
+          <span className="text-xl sm:text-2xl group-hover:rotate-12 transition-transform duration-300">
             🚀
           </span>
         </h3>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6">
           {techStack.map((category, categoryIndex) => (
             <div key={categoryIndex} className="space-y-3">
               <h4 className="text-sm font-semibold text-navy/80 uppercase tracking-wider">
@@ -291,9 +292,9 @@ export default function AboutGrid() {
         initial="hidden"
         animate={scrollControls}
         variants={variants}
-        className="col-span-1 md:col-span-3 lg:col-span-4 bg-gradient-to-br from-grey/20 to-grey/5 border border-white/20 backdrop-filter backdrop-blur-md rounded-2xl p-6 text-white hover:border-navy/50 transition-all duration-500"
+        className="col-span-1 md:col-span-3 lg:col-span-4 bg-gradient-to-br from-grey/20 to-grey/5 border border-white/20 backdrop-filter backdrop-blur-md rounded-2xl p-4 sm:p-6 text-white hover:border-navy/50 transition-all duration-500"
       >
-        <h3 className="text-xl font-bold mb-4 flex items-center gap-2">
+        <h3 className="text-lg sm:text-xl font-bold mb-3 sm:mb-4 flex items-center gap-2">
           <span>Let&apos;s Connect</span>
           <span className="text-navy">🤝</span>
         </h3>
@@ -324,9 +325,9 @@ export default function AboutGrid() {
         initial="hidden"
         animate={scrollControls}
         variants={variants}
-        className="col-span-1 md:col-span-3 lg:col-span-4 bg-gradient-to-br from-navy/20 to-navy/5 border border-navy/30 backdrop-filter backdrop-blur-md rounded-2xl p-6 text-white hover:border-navy/60 hover:from-navy/30 hover:to-navy/10 transition-all duration-500 group"
+        className="col-span-1 md:col-span-3 lg:col-span-4 bg-gradient-to-br from-navy/20 to-navy/5 border border-navy/30 backdrop-filter backdrop-blur-md rounded-2xl p-4 sm:p-6 text-white hover:border-navy/60 hover:from-navy/30 hover:to-navy/10 transition-all duration-500 group"
       >
-        <h3 className="text-xl font-bold mb-4 flex items-center gap-2">
+        <h3 className="text-lg sm:text-xl font-bold mb-3 sm:mb-4 flex items-center gap-2">
           <span>Awards & Recognition</span>
           <FaTrophy className="text-navy group-hover:rotate-12 transition-transform duration-300" />
         </h3>
@@ -360,11 +361,11 @@ export default function AboutGrid() {
         initial="hidden"
         animate={scrollControls}
         variants={variants}
-        className="col-span-1 md:col-span-6 lg:col-span-8 bg-gradient-to-r from-grey/20 via-grey/10 to-grey/20 border border-white/20 backdrop-filter backdrop-blur-md rounded-2xl h-20 flex items-center overflow-hidden hover:border-navy/50 transition-all duration-500 group"
+        className="col-span-1 md:col-span-6 lg:col-span-8 bg-gradient-to-r from-grey/20 via-grey/10 to-grey/20 border border-white/20 backdrop-filter backdrop-blur-md rounded-2xl h-16 sm:h-20 flex items-center overflow-hidden hover:border-navy/50 transition-all duration-500 group"
       >
         <motion.div
           ref={ref}
-          className="flex items-center gap-8 text-4xl text-white/80 group-hover:text-white transition-colors duration-500"
+          className="flex items-center gap-6 sm:gap-8 text-3xl sm:text-4xl text-white/80 group-hover:text-white transition-colors duration-500"
           style={{ x: xTranslation }}
         >
           {icons.map((icon, index) => (
@@ -377,7 +378,7 @@ export default function AboutGrid() {
           ))}
         </motion.div>
         <motion.div
-          className="flex items-center gap-8 text-4xl text-white/80 group-hover:text-white transition-colors duration-500"
+          className="flex items-center gap-6 sm:gap-8 text-3xl sm:text-4xl text-white/80 group-hover:text-white transition-colors duration-500"
           style={{ x: xTranslation }}
         >
           {icons.map((icon, index) => (
@@ -403,8 +404,6 @@ const icons = [
   <SiReact key="react" />,
   <SiNextdotjs key="nextjs" />,
   <SiMongodb key="mongodb" />,
-  <SiMysql key="mysql" />,
-  <SiPrisma key="prisma" />,
   <SiTailwindcss key="tailwindcss" />,
   <SiFramer key="framer" />,
   <SiFigma key="figma" />,

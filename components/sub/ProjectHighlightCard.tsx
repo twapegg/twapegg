@@ -7,7 +7,6 @@ import Link from "next/link";
 import { FaArrowUpRightFromSquare } from "react-icons/fa6";
 import TechKeyword from "../ui/tech-keyword";
 import AnimatedText from "../ui/animated-text";
-import Reveal from "../ui/Reveal";
 import { useRef } from "react";
 
 interface ProjectHighlightCardProps {
