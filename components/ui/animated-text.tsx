@@ -1,6 +1,7 @@
 "use client";
 import { motion, useInView, useAnimation, Variant } from "framer-motion";
 import { useEffect, useRef } from "react";
+import React from "react";
 
 type Word = {
   text: string;
@@ -9,7 +10,7 @@ type Word = {
 
 type AnimatedTextProps = {
   text?: Word[] | string;
-  el?: keyof JSX.IntrinsicElements;
+  el?: keyof React.JSX.IntrinsicElements;
   className?: string;
   once?: boolean;
   repeatDelay?: number;
@@ -35,7 +36,7 @@ const defaultAnimations = {
 
 const AnimatedText = ({
   text,
-  el = "p" as keyof JSX.IntrinsicElements,
+  el = "p" as keyof React.JSX.IntrinsicElements,
   className,
   once = false,
   repeatDelay,
@@ -68,7 +69,7 @@ const AnimatedText = ({
   }, [isInView, controls, repeatDelay]);
 
   const Element = el as any;
-  
+
   return (
     <Element className={className}>
       <span className="sr-only">{textArray.join(" ")}</span>

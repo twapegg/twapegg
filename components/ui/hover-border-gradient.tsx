@@ -1,5 +1,5 @@
 "use client";
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState, useEffect } from "react";
 
 import { motion } from "framer-motion";
 import { cn } from "@/utils/cn";
@@ -16,7 +16,7 @@ export function HoverBorderGradient({
   ...props
 }: React.PropsWithChildren<
   {
-    as?: React.ElementType;
+    as?: any;
     containerClassName?: string;
     className?: string;
     duration?: number;
@@ -25,15 +25,6 @@ export function HoverBorderGradient({
 >) {
   const [hovered, setHovered] = useState<boolean>(false);
   const [direction, setDirection] = useState<Direction>("TOP");
-
-  const rotateDirection = (currentDirection: Direction): Direction => {
-    const directions: Direction[] = ["TOP", "LEFT", "BOTTOM", "RIGHT"];
-    const currentIndex = directions.indexOf(currentDirection);
-    const nextIndex = clockwise
-      ? (currentIndex - 1 + directions.length) % directions.length
-      : (currentIndex + 1) % directions.length;
-    return directions[nextIndex];
-  };
 
   const movingMap: Record<Direction, string> = {
     TOP: "radial-gradient(20.7% 50% at 50% 0%, hsl(0, 0%, 100%) 0%, rgba(255, 255, 255, 0) 100%)",
@@ -50,14 +41,22 @@ export function HoverBorderGradient({
   useEffect(() => {
     if (!hovered) {
       const interval = setInterval(() => {
-        setDirection((prevState) => rotateDirection(prevState));
+        setDirection((prevState) => {
+          const directions: Direction[] = ["TOP", "LEFT", "BOTTOM", "RIGHT"];
+          const currentIndex = directions.indexOf(prevState);
+          const nextIndex = clockwise
+            ? (currentIndex - 1 + directions.length) % directions.length
+            : (currentIndex + 1) % directions.length;
+          return directions[nextIndex];
+        });
       }, duration * 1000);
       return () => clearInterval(interval);
     }
-  }, [hovered]);
+    return undefined;
+  }, [hovered, duration, clockwise]);
   return (
     <Tag
-      onMouseEnter={(event: React.MouseEvent<HTMLDivElement>) => {
+      onMouseEnter={() => {
         setHovered(true);
       }}
       onMouseLeave={() => setHovered(false)}

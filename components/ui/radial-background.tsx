@@ -2,7 +2,7 @@
 import { motion, useMotionTemplate } from "framer-motion";
 import { useState, useEffect } from "react";
 
-const RadialGradientBackground = ({ positionX, positionY }: any) => {
+const RadialGradientBackground = () => {
   const [windowWidth, setWindowWidth] = useState(0);
   const [windowHeight, setWindowHeight] = useState(0);
   const [scrollY, setScrollY] = useState(0);

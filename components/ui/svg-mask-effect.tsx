@@ -25,13 +25,13 @@ export const MaskContainer = ({
   };
 
   useEffect(() => {
-    containerRef.current.addEventListener("mousemove", updateMousePosition);
+    const container = containerRef.current;
+    if (container) {
+      container.addEventListener("mousemove", updateMousePosition);
+    }
     return () => {
-      if (containerRef.current) {
-        containerRef.current.removeEventListener(
-          "mousemove",
-          updateMousePosition
-        );
+      if (container) {
+        container.removeEventListener("mousemove", updateMousePosition);
       }
     };
   }, []);
@@ -47,12 +47,14 @@ export const MaskContainer = ({
     >
       <motion.div
         className="w-full h-full flex items-center justify-center text-6xl absolute bg-black bg-grid-white/[0.2] text-white [mask-image:url(/mask.svg)] [mask-size:40px] [mask-repeat:no-repeat]"
-        animate={{
-          WebkitMaskPosition: `${mousePosition.x - maskSize / 2}px ${
-            mousePosition.y - maskSize / 2
-          }px`,
-          WebkitMaskSize: `${maskSize}px`,
-        } as any}
+        animate={
+          {
+            WebkitMaskPosition: `${mousePosition.x - maskSize / 2}px ${
+              mousePosition.y - maskSize / 2
+            }px`,
+            WebkitMaskSize: `${maskSize}px`,
+          } as any
+        }
         transition={{ type: "tween", ease: "backOut", duration: 0.1 }}
       >
         <div className="absolute inset-0 bg-black h-full w-full z-0 opacity-50" />
