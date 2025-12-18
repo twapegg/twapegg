@@ -71,7 +71,7 @@ export const techStack = [
     category: "Frontend",
     technologies: [
       { name: "React", icon: "SiReact" },
-      { name: "Next.js", icon: "SiNextdotjs" },
+      { name: "Next.js", icon: "SiNextdotjs", specialty: true },
       { name: "TypeScript", icon: "SiTypescript" },
       { name: "Tailwind", icon: "SiTailwindcss" },
     ],
@@ -81,7 +81,7 @@ export const techStack = [
     technologies: [
       { name: "Node.js", icon: "SiNodedotjs" },
       { name: "Express", icon: "SiExpress" },
-      { name: "Python", icon: "FaPython" },
+      { name: "Python", icon: "FaPython", specialty: true },
       { name: "MongoDB", icon: "SiMongodb" },
     ],
   },

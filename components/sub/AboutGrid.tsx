@@ -278,7 +278,17 @@ export default function AboutGrid() {
                           <IconComponent className="text-lg text-navy group-hover/item:scale-110 transition-transform duration-300" />
                         )
                       )}
-                      <span className="text-sm">{tech.name}</span>
+                      <span className="text-sm flex items-center gap-1">
+                        {tech.name}
+                        {tech.specialty && (
+                          <span
+                            className="text-yellow-400 text-xs"
+                            title="Specialty"
+                          >
+                            ⭐
+                          </span>
+                        )}
+                      </span>
                     </div>
                   );
                 })}
@@ -289,6 +299,7 @@ export default function AboutGrid() {
       </motion.div>
 
       <motion.div
+        id="connect-section"
         initial="hidden"
         animate={scrollControls}
         variants={variants}
