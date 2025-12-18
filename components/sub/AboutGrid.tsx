@@ -17,6 +17,7 @@ import {
   SiFramer,
   SiGithub,
   SiJavascript,
+  SiLangchain,
   SiMongodb,
   SiNextdotjs,
   SiNodedotjs,
@@ -82,6 +83,8 @@ export default function AboutGrid() {
         return SiPytorch;
       case "SiOpenai":
         return SiOpenai;
+      case "SiLangchain":
+        return SiLangchain;
       default:
         return SiReact;
     }
@@ -262,22 +265,13 @@ export default function AboutGrid() {
               </h4>
               <div className="space-y-2">
                 {category.technologies.map((tech, techIndex) => {
-                  const IconComponent =
-                    tech.icon === "emoji" ? null : getTechIcon(tech.icon);
+                  const IconComponent = getTechIcon(tech.icon);
                   return (
                     <div
                       key={techIndex}
                       className="flex items-center gap-2 p-2 rounded-lg bg-white/5 hover:bg-navy/20 transition-all duration-300 group/item"
                     >
-                      {tech.icon === "emoji" ? (
-                        <span className="text-lg text-navy font-bold group-hover/item:scale-110 transition-transform duration-300">
-                          🦜
-                        </span>
-                      ) : (
-                        IconComponent && (
-                          <IconComponent className="text-lg text-navy group-hover/item:scale-110 transition-transform duration-300" />
-                        )
-                      )}
+                      <IconComponent className="text-lg text-navy group-hover/item:scale-110 transition-transform duration-300" />
                       <span className="text-sm flex items-center gap-1">
                         {tech.name}
                         {tech.specialty && (

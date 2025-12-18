@@ -91,7 +91,7 @@ export const techStack = [
       { name: "PyTorch", icon: "SiPytorch" },
       { name: "Scikit-learn", icon: "FaPython" },
       { name: "OpenAI", icon: "SiOpenai" },
-      { name: "LangChain", icon: "emoji" },
+      { name: "LangChain", icon: "SiLangchain" },
     ],
   },
 ];
