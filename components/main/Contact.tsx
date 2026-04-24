@@ -6,15 +6,15 @@ import Reveal from "../ui/Reveal";
 export default function Contact() {
   const scrollToConnect = () => {
     const connectSection = document.getElementById("connect-section");
-    
+
     if (connectSection) {
       // Scroll directly to the connect section to ensure it's fully visible
-      connectSection.scrollIntoView({ 
-        behavior: "smooth", 
+      connectSection.scrollIntoView({
+        behavior: "smooth",
         block: "center",
-        inline: "nearest"
+        inline: "nearest",
       });
-      
+
       // Add highlighting effect after scrolling
       setTimeout(() => {
         connectSection.classList.add("highlight-connect");
@@ -29,11 +29,7 @@ export default function Contact() {
     <div id="footer" className="z-50 h-screen rounded-3xl">
       <div className="flex flex-col items-center gap-16">
         <AnimatedText
-          text={[
-            { text: "Wanna" },
-            { text: "level up", color: "gold" },
-            { text: "your next project?" },
-          ]}
+          text={[{ text: "Want to" }, { text: "get in touch?", color: "gold" }]}
           className="px-4 md:px-12 text-5xl lg:text-6xl text-white font-extrabold text-center"
         />
 
@@ -42,11 +38,10 @@ export default function Contact() {
             onClick={scrollToConnect}
             className="bg-grey/10 border border-white/50 backdrop-filter backdrop-blur-[1.25px] rounded-3xl py-10 px-16 text-5xl text-white hover:border-gold hover:bg-gold/10 hover:text-gold hover:font-bold transition-all duration-500 cursor-pointer"
           >
-            get in touch <span>{"->"}</span>
+            hit me up @ socials <span>{"->"}</span>
           </button>
         </Reveal>
       </div>
     </div>
   );
 }
-

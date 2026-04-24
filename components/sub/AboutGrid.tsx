@@ -225,7 +225,7 @@ export default function AboutGrid() {
         </h2>
         <div className="space-y-3 sm:space-y-4 text-white/90 leading-relaxed">
           <p className="text-sm sm:text-base md:text-lg">
-            Based in the Philippines, I&apos;m a fourth-year student at{" "}
+            Based in the Philippines, I&apos;m a computer science graduate at{" "}
             <a
               href="https://su.edu.ph/"
               target="_blank"
@@ -416,7 +416,9 @@ export default function AboutGrid() {
               >
                 <div className="flex items-center gap-4 flex-1">
                   <IconComponent className="text-2xl sm:text-3xl group-hover:scale-110 transition-transform duration-300" />
-                  <span className="text-lg sm:text-xl font-semibold">{contact.name}</span>
+                  <span className="text-lg sm:text-xl font-semibold">
+                    {contact.name}
+                  </span>
                 </div>
               </a>
             );
