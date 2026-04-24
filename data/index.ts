@@ -156,10 +156,4 @@ export const contacts = [
     icon: "FaGithub",
     external: true,
   },
-  {
-    name: "Instagram",
-    url: "https://www.instagram.com/ppugppugi/",
-    icon: "FaInstagram",
-    external: true,
-  },
 ];

@@ -6,7 +6,6 @@ import {
   FaPython,
   FaLinkedin,
   FaGithub,
-  FaInstagram,
   FaTrophy,
   FaMedal,
   FaAward,
@@ -139,8 +138,6 @@ export default function AboutGrid() {
         return FaLinkedin;
       case "FaGithub":
         return FaGithub;
-      case "FaInstagram":
-        return FaInstagram;
       default:
         return IoMail;
     }
@@ -400,11 +397,11 @@ export default function AboutGrid() {
         variants={variants}
         className="col-span-1 md:col-span-3 lg:col-span-4 bg-gradient-to-br from-grey/20 to-grey/5 border border-white/20 backdrop-filter backdrop-blur-md rounded-2xl p-4 sm:p-6 text-white hover:border-navy/50 transition-all duration-500"
       >
-        <h3 className="text-lg sm:text-xl font-bold mb-3 sm:mb-4 flex items-center gap-2">
+        <h3 className="text-xl sm:text-2xl font-bold mb-4 sm:mb-5 flex items-center gap-2">
           <span>Let&apos;s Connect</span>
           <FaHandshake className="text-gold" />
         </h3>
-        <div className="flex flex-col gap-3">
+        <div className="flex flex-col gap-4">
           {contacts.map((contact, index) => {
             const IconComponent = getContactIcon(contact.icon);
             return (
@@ -415,11 +412,11 @@ export default function AboutGrid() {
                   target: "_blank",
                   rel: "noopener noreferrer",
                 })}
-                className="flex items-center justify-between w-full p-3 rounded-lg bg-white/5 hover:bg-navy/20 hover:text-navy transition-all duration-300 group"
+                className="flex items-center justify-between w-full p-4 sm:p-5 rounded-xl bg-white/5 hover:bg-navy/20 hover:text-navy transition-all duration-300 group"
               >
-                <div className="flex items-center gap-3 flex-1">
-                  <IconComponent className="text-xl group-hover:scale-110 transition-transform duration-300" />
-                  <span className="font-medium">{contact.name}</span>
+                <div className="flex items-center gap-4 flex-1">
+                  <IconComponent className="text-2xl sm:text-3xl group-hover:scale-110 transition-transform duration-300" />
+                  <span className="text-lg sm:text-xl font-semibold">{contact.name}</span>
                 </div>
               </a>
             );
