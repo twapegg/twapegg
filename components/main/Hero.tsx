@@ -1,5 +1,7 @@
-import React from "react";
+"use client";
+
 import { AuroraBackground } from "../ui/aurora-background";
+import { useLightweightMode } from "../ui/lightweight-mode";
 
 interface HeroProps {
   title: string;
@@ -8,13 +10,19 @@ interface HeroProps {
 }
 
 export default function Hero({ title, subtitle, highlight = "" }: HeroProps) {
+  const { isLightweightMode } = useLightweightMode();
+
   return (
     <section
       id="hero"
       className="h-screen w-full relative flex items-center justify-center overflow-hidden"
     >
       <div className="absolute inset-0">
-        <AuroraBackground />
+        {isLightweightMode ? (
+          <div className="h-full w-full bg-[radial-gradient(circle_at_20%_20%,rgba(127,199,186,0.2),transparent_45%),radial-gradient(circle_at_80%_0%,rgba(243,211,106,0.14),transparent_40%),linear-gradient(180deg,#020617,#000000)]" />
+        ) : (
+          <AuroraBackground />
+        )}
       </div>
 
       <div className="absolute inset-0 flex flex-col items-center gap-4 justify-center">
@@ -22,7 +30,7 @@ export default function Hero({ title, subtitle, highlight = "" }: HeroProps) {
           {title}
         </p>
 
-        <p className="text-base sm:text-lg md:text-md z-20 px-24 text-center bg-clip-text text-transparent bg-slate-100 ">
+        <p className="text-base sm:text-lg md:text-md z-20 px-24 text-center text-white/80 ">
           {subtitle}{" "}
           <span className="text-navy font-semibold">{highlight}</span>
         </p>

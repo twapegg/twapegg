@@ -68,7 +68,7 @@ const StarBackground = (props: StarBackgroundProps) => {
 };
 
 const StarsCanvas = () => (
-  <div className="w-full h-auto fixed inset-0 z-[0]">
+  <div className="pointer-events-none fixed inset-0 -z-10 h-screen w-full">
     <Canvas
       camera={{ position: [0, 0, 1] }}
       onClick={(event) => event.stopPropagation()}

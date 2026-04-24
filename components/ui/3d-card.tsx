@@ -1,6 +1,7 @@
 "use client";
 
 import { cn } from "@/utils/cn";
+import { useLightweightMode } from "./lightweight-mode";
 import React, {
   createContext,
   useState,
@@ -24,8 +25,10 @@ export const CardContainer = ({
 }) => {
   const containerRef = useRef<HTMLDivElement>(null);
   const [isMouseEntered, setIsMouseEntered] = useState(false);
+  const { isLightweightMode } = useLightweightMode();
 
   const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
+    if (isLightweightMode) return;
     if (!containerRef.current) return;
     const { left, top, width, height } =
       containerRef.current.getBoundingClientRect();
@@ -35,6 +38,7 @@ export const CardContainer = ({
   };
 
   const handleMouseEnter = () => {
+    if (isLightweightMode) return;
     setIsMouseEntered(true);
     if (!containerRef.current) return;
   };
@@ -49,7 +53,7 @@ export const CardContainer = ({
       <div
         className={cn("flex items-center justify-center", containerClassName)}
         style={{
-          perspective: "1000px",
+          perspective: isLightweightMode ? "none" : "1000px",
         }}
       >
         <div
@@ -62,7 +66,7 @@ export const CardContainer = ({
             className
           )}
           style={{
-            transformStyle: "preserve-3d",
+            transformStyle: isLightweightMode ? "flat" : "preserve-3d",
           }}
         >
           {children}
@@ -116,15 +120,31 @@ export const CardItem = ({
 }) => {
   const ref = useRef<HTMLDivElement>(null);
   const [isMouseEntered] = useMouseEnter();
+  const { isLightweightMode } = useLightweightMode();
 
   useEffect(() => {
     if (!ref.current) return;
+    if (isLightweightMode) {
+      ref.current.style.transform =
+        "translateX(0px) translateY(0px) translateZ(0px) rotateX(0deg) rotateY(0deg) rotateZ(0deg)";
+      return;
+    }
+
     if (isMouseEntered) {
       ref.current.style.transform = `translateX(${translateX}px) translateY(${translateY}px) translateZ(${translateZ}px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) rotateZ(${rotateZ}deg)`;
     } else {
       ref.current.style.transform = `translateX(0px) translateY(0px) translateZ(0px) rotateX(0deg) rotateY(0deg) rotateZ(0deg)`;
     }
-  }, [isMouseEntered, translateX, translateY, translateZ, rotateX, rotateY, rotateZ]);
+  }, [
+    isLightweightMode,
+    isMouseEntered,
+    translateX,
+    translateY,
+    translateZ,
+    rotateX,
+    rotateY,
+    rotateZ,
+  ]);
 
   return (
     <Tag

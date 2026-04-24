@@ -63,6 +63,7 @@ export default function ProjectHighlightCard({
                 src={imageUrl}
                 height="1000"
                 width="1000"
+                loading="eager"
                 className="h-[14rem] w-[14rem] md:h-[12rem] md:w-[12rem] object-cover rounded-xl group-hover/card:shadow-xl transition-all duration-300"
                 alt={imageAlt}
               />
@@ -93,7 +94,7 @@ export default function ProjectHighlightCard({
 
             <CardItem
               translateZ={60}
-              className="flex-shrink-0 px-4 text-xl font-bold flex flex-row items-center justify-center gap-2 text-navy group-hover/card:text-navy/80 transition-colors duration-300"
+              className="flex-shrink-0 px-4 text-xl font-bold flex flex-row items-center justify-center gap-2 text-gold group-hover/card:text-gold/80 transition-colors duration-300"
             >
               {year}{" "}
               <span className="opacity-0 group-hover/card:opacity-100 transition-opacity duration-300">

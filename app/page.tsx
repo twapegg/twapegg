@@ -5,7 +5,7 @@ import Footer from "@/components/main/Contact";
 
 export default function Home() {
   return (
-    <main className="w-full relative">
+    <main className="relative z-10 w-full">
       <Hero
         title="hello world!"
         subtitle="I'm Stanley, and I dabble in"

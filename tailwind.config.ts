@@ -7,7 +7,7 @@ const {
 } = require("tailwindcss/lib/util/flattenColorPalette");
 
 const config = {
-  darkMode: ["class"],
+  darkMode: "class",
   content: [
     "./pages/**/*.{ts,tsx}",
     "./components/**/*.{ts,tsx}",
@@ -41,6 +41,7 @@ const config = {
           "100": "#E4ECFF",
         },
         navy: "#7fc7ba",
+        gold: "#D4AF37",
         metal: {
           DEFAULT: "#353735",
           20: "rgba(44, 44, 44, 0.20)",

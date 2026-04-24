@@ -1,4 +1,3 @@
-import React from "react";
 import ProjectHighlightCard from "../sub/ProjectHighlightCard";
 import { projects } from "@/data/index";
 import AnimatedText from "../ui/animated-text";

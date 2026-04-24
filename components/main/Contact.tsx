@@ -1,6 +1,5 @@
 "use client";
 
-import React from "react";
 import AnimatedText from "../ui/animated-text";
 import Reveal from "../ui/Reveal";
 
@@ -32,7 +31,7 @@ export default function Contact() {
         <AnimatedText
           text={[
             { text: "Wanna" },
-            { text: "level up", color: "navy" },
+            { text: "level up", color: "gold" },
             { text: "your next project?" },
           ]}
           className="px-4 md:px-12 text-5xl lg:text-6xl text-white font-extrabold text-center"
@@ -41,12 +40,13 @@ export default function Contact() {
         <Reveal>
           <button
             onClick={scrollToConnect}
-            className="bg-grey/10 border border-white/50 backdrop-filter backdrop-blur-[1.25px] rounded-3xl py-10 px-16 text-5xl text-white hover:border-navy hover:bg-navy/10 hover:text-navy hover:font-bold transition-all duration-500 cursor-pointer"
+            className="bg-grey/10 border border-white/50 backdrop-filter backdrop-blur-[1.25px] rounded-3xl py-10 px-16 text-5xl text-white hover:border-gold hover:bg-gold/10 hover:text-gold hover:font-bold transition-all duration-500 cursor-pointer"
           >
-            get in touch <span className="">→</span>
+            get in touch <span>{"->"}</span>
           </button>
         </Reveal>
       </div>
     </div>
   );
 }
+

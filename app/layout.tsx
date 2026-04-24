@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import StarBackground from "@/components/ui/star-background";
+import LightweightShell from "@/components/ui/lightweight-shell";
 import { Inter } from "next/font/google";
 import "./globals.css";
 
@@ -20,8 +20,7 @@ export default function RootLayout({
       <body
         className={`${inter.className} overflow-y-scroll overflow-x-hidden`}
       >
-        <StarBackground />
-        {children}
+        <LightweightShell>{children}</LightweightShell>
       </body>
     </html>
   );

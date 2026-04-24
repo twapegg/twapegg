@@ -1,4 +1,3 @@
-import React from "react";
 import AboutGrid from "../sub/AboutGrid";
 import AnimatedText from "../ui/animated-text";
 

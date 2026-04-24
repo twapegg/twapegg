@@ -1,7 +1,7 @@
 "use client";
 
 import Image from "next/image";
-import React, { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import {
   FaPython,
   FaLinkedin,
@@ -10,22 +10,37 @@ import {
   FaTrophy,
   FaMedal,
   FaAward,
+  FaRocket,
+  FaHandshake,
+  FaGamepad,
+  FaAws,
 } from "react-icons/fa";
 import {
+  SiCplusplus,
+  SiDocker,
   SiExpress,
+  SiFastapi,
+  SiFirebase,
   SiFigma,
   SiFramer,
+  SiGit,
+  SiGoogleappsscript,
   SiGithub,
   SiJavascript,
   SiLangchain,
   SiMongodb,
+  SiN8N,
   SiNextdotjs,
   SiNodedotjs,
   SiOpenai,
+  SiOpenjdk,
+  SiPhp,
   SiPytorch,
   SiReact,
+  SiSupabase,
   SiTailwindcss,
   SiTypescript,
+  SiWordpress,
 } from "react-icons/si";
 
 import { IoMail } from "react-icons/io5";
@@ -38,15 +53,17 @@ import {
   useInView,
   useMotionValue,
 } from "framer-motion";
-import { awards, techStack, contacts } from "@/data";
+import { awards, techStack, contacts, experiences } from "@/data";
 
 export default function AboutGrid() {
   const scrollRef = useRef<HTMLDivElement>(null);
   const isInView = useInView(scrollRef as any, { amount: 0.1 });
   const scrollControls = useAnimation();
+  const [activeExperienceIndex, setActiveExperienceIndex] = useState(0);
 
   const [ref, { width }] = useMeasure();
   const xTranslation = useMotionValue(0);
+  const activeExperience = experiences[activeExperienceIndex] ?? experiences[0];
 
   const getAwardIcon = (iconType: string) => {
     switch (iconType) {
@@ -85,6 +102,30 @@ export default function AboutGrid() {
         return SiOpenai;
       case "SiLangchain":
         return SiLangchain;
+      case "SiFastapi":
+        return SiFastapi;
+      case "SiFirebase":
+        return SiFirebase;
+      case "SiSupabase":
+        return SiSupabase;
+      case "SiN8N":
+        return SiN8N;
+      case "SiAmazonwebservices":
+        return FaAws;
+      case "SiDocker":
+        return SiDocker;
+      case "SiCplusplus":
+        return SiCplusplus;
+      case "SiOpenjdk":
+        return SiOpenjdk;
+      case "SiPhp":
+        return SiPhp;
+      case "SiGit":
+        return SiGit;
+      case "SiGoogleappsscript":
+        return SiGoogleappsscript;
+      case "SiWordpress":
+        return SiWordpress;
       default:
         return SiReact;
     }
@@ -157,9 +198,10 @@ export default function AboutGrid() {
         <div className="relative h-64 sm:h-80 md:h-96 w-full overflow-hidden rounded-xl">
           <Image
             src="/stan.jpg"
-            fill
+            width={1200}
+            height={900}
             alt="Stanley Altonaga - Full Stack Developer"
-            className="object-cover object-top w-full h-full group-hover:scale-105 transition-transform duration-500"
+            className="h-full w-full object-cover object-top group-hover:scale-105 transition-transform duration-500"
             sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
             priority
           />
@@ -222,7 +264,8 @@ export default function AboutGrid() {
               <span className="text-navy font-semibold hover:text-navy/80 transition-colors duration-300 border-navy/30 hover:border-navy/60">
                 neuroscience and the future of brain-computer interfaces.
               </span>{" "}
-              Off the clock, I&apos;m more or less rotting in video games 🎮
+              Off the clock, I&apos;m more or less rotting in video games{" "}
+              <FaGamepad className="inline-block text-navy align-[-2px]" />
             </span>
           </p>
         </div>
@@ -232,64 +275,120 @@ export default function AboutGrid() {
         initial="hidden"
         animate={scrollControls}
         variants={variants}
-        className="col-span-1 md:col-span-2 lg:col-span-2 bg-gradient-to-br from-navy/20 to-navy/5 border border-navy/30 backdrop-filter backdrop-blur-md rounded-2xl p-4 sm:p-6 text-white flex flex-col items-center justify-center text-center hover:border-navy/60 hover:from-navy/30 hover:to-navy/10 transition-all duration-500 group min-h-[120px] sm:min-h-[140px]"
+        className="col-span-1 md:col-span-6 lg:col-span-8 bg-gradient-to-br from-navy/20 to-navy/5 border border-navy/30 backdrop-filter backdrop-blur-md rounded-2xl p-4 sm:p-6 text-white hover:border-navy/60 transition-all duration-500 group"
       >
-        <div className="text-5xl sm:text-6xl md:text-7xl font-black bg-gradient-to-b from-navy to-navy/70 bg-clip-text text-transparent mb-2 group-hover:scale-110 transition-transform duration-300">
-          10+
+        <h3 className="text-lg sm:text-xl font-bold mb-4 sm:mb-6 text-navy flex items-center gap-2">
+          <span>Tech Stack</span>
+          <FaRocket className="text-gold text-lg sm:text-xl group-hover:rotate-12 transition-transform duration-300" />
+        </h3>
+
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8">
+          {techStack.map((category, categoryIndex) => (
+            <div
+              key={categoryIndex}
+              className={`min-w-0 ${
+                categoryIndex > 0
+                  ? "md:border-l md:border-white/10 md:pl-6 lg:pl-8"
+                  : ""
+              }`}
+            >
+              <h4 className="text-xs sm:text-sm font-semibold text-navy/90 uppercase tracking-[0.15em]">
+                {category.category}
+              </h4>
+              <ul className="mt-3 space-y-2.5">
+                {category.technologies.map((tech, techIndex) => {
+                  const IconComponent = getTechIcon(tech.icon);
+                  return (
+                    <li
+                      key={techIndex}
+                      className="flex items-center gap-2.5 text-sm text-white/85 leading-tight"
+                    >
+                      <IconComponent className="text-[15px] text-navy shrink-0" />
+                      <span className="text-xs sm:text-sm text-white/90">
+                        {tech.name}
+                      </span>
+                      {tech.specialty && (
+                        <span className="text-[10px] uppercase tracking-wide text-gold border border-gold/50 bg-gold/10 rounded px-1.5 py-[1px]">
+                          Core
+                        </span>
+                      )}
+                    </li>
+                  );
+                })}
+              </ul>
+            </div>
+          ))}
         </div>
-        <p className="text-base sm:text-lg font-semibold text-navy/90 mb-1">
-          Months
-        </p>
-        <p className="text-xs sm:text-sm text-white/70 text-center px-2">
-          Professional Coding Experience
-        </p>
       </motion.div>
+
       <motion.div
         initial="hidden"
         animate={scrollControls}
         variants={variants}
-        className="col-span-1 md:col-span-4 lg:col-span-6 bg-gradient-to-br from-navy/20 to-navy/5 border border-navy/30 backdrop-filter backdrop-blur-md rounded-2xl p-4 sm:p-6 text-white hover:border-navy/60 transition-all duration-500 group"
+        className="col-span-1 md:col-span-6 lg:col-span-8 bg-gradient-to-br from-grey/20 to-grey/5 border border-white/20 backdrop-filter backdrop-blur-md rounded-2xl p-4 sm:p-6 text-white hover:border-navy/50 transition-all duration-500"
       >
-        <h3 className="text-lg sm:text-xl font-bold mb-4 sm:mb-6 text-navy flex items-center gap-2">
-          <span>Tech Stack</span>
-          <span className="text-xl sm:text-2xl group-hover:rotate-12 transition-transform duration-300">
-            🚀
-          </span>
+        <h3 className="text-lg sm:text-xl font-bold mb-4 sm:mb-6 text-navy">
+          Experience
         </h3>
-
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6">
-          {techStack.map((category, categoryIndex) => (
-            <div key={categoryIndex} className="space-y-3">
-              <h4 className="text-sm font-semibold text-navy/80 uppercase tracking-wider">
-                {category.category}
-              </h4>
-              <div className="space-y-2">
-                {category.technologies.map((tech, techIndex) => {
-                  const IconComponent = getTechIcon(tech.icon);
+        {activeExperience ? (
+          <div className="grid grid-cols-1 md:grid-cols-10 gap-4 md:gap-8">
+            <div className="md:col-span-3">
+              <div className="border-l border-white/15">
+                {experiences.map((experience, index) => {
+                  const isActive = index === activeExperienceIndex;
                   return (
-                    <div
-                      key={techIndex}
-                      className="flex items-center gap-2 p-2 rounded-lg bg-white/5 hover:bg-navy/20 transition-all duration-300 group/item"
+                    <button
+                      key={experience.company}
+                      type="button"
+                      onClick={() => setActiveExperienceIndex(index)}
+                      className={`relative w-full text-left px-4 py-3 sm:py-4 transition-colors duration-200 ${
+                        isActive
+                          ? "text-gold bg-gold/10"
+                          : "text-white/70 hover:text-white hover:bg-white/5"
+                      }`}
                     >
-                      <IconComponent className="text-lg text-navy group-hover/item:scale-110 transition-transform duration-300" />
-                      <span className="text-sm flex items-center gap-1">
-                        {tech.name}
-                        {tech.specialty && (
-                          <span
-                            className="text-yellow-400 text-xs"
-                            title="Specialty"
-                          >
-                            ⭐
-                          </span>
-                        )}
+                      <span
+                        className={`absolute left-0 top-0 h-full w-[2px] ${
+                          isActive ? "bg-gold" : "bg-transparent"
+                        }`}
+                      />
+                      <span className="text-xs sm:text-sm font-semibold uppercase tracking-wider">
+                        {experience.company}
                       </span>
-                    </div>
+                    </button>
                   );
                 })}
               </div>
             </div>
-          ))}
-        </div>
+
+            <motion.div
+              key={`${activeExperience.company}-${activeExperience.period}`}
+              initial={{ opacity: 0, y: 6 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.25, ease: "easeOut" }}
+              className="md:col-span-7 rounded-xl bg-white/5 border border-white/10 p-4 sm:p-5"
+            >
+              <p className="text-lg sm:text-xl font-bold text-white">
+                {activeExperience.role}{" "}
+                <span className="text-gold">@ {activeExperience.company}</span>
+              </p>
+              <p className="text-xs sm:text-sm text-white/70 mt-1">
+                {activeExperience.period}
+              </p>
+              <ul className="mt-4 space-y-3">
+                {activeExperience.highlights.map((highlight, highlightIndex) => (
+                  <li
+                    key={highlightIndex}
+                    className="text-sm sm:text-base text-white/80 leading-relaxed flex items-start gap-3"
+                  >
+                    <span className="mt-[6px] h-2 w-2 rounded-full bg-gold shrink-0" />
+                    <span>{highlight}</span>
+                  </li>
+                ))}
+              </ul>
+            </motion.div>
+          </div>
+        ) : null}
       </motion.div>
 
       <motion.div
@@ -301,7 +400,7 @@ export default function AboutGrid() {
       >
         <h3 className="text-lg sm:text-xl font-bold mb-3 sm:mb-4 flex items-center gap-2">
           <span>Let&apos;s Connect</span>
-          <span className="text-navy">🤝</span>
+          <FaHandshake className="text-gold" />
         </h3>
         <div className="flex flex-col gap-3">
           {contacts.map((contact, index) => {
@@ -416,3 +515,4 @@ const icons = [
   <SiPytorch key="pytorch" />,
   <SiOpenai key="openai" />,
 ];
+
