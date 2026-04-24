@@ -64,7 +64,7 @@ export function LightweightModeProvider({
   const isLightweightMode = useSyncExternalStore(
     subscribe,
     getSnapshot,
-    getServerSnapshot
+    getServerSnapshot,
   );
 
   const toggleLightweightMode = useCallback(() => {
@@ -75,7 +75,7 @@ export function LightweightModeProvider({
 
   const value = useMemo(
     () => ({ isLightweightMode, toggleLightweightMode }),
-    [isLightweightMode, toggleLightweightMode]
+    [isLightweightMode, toggleLightweightMode],
   );
 
   return (
@@ -89,7 +89,7 @@ export function useLightweightMode() {
   const context = useContext(LightweightModeContext);
   if (!context) {
     throw new Error(
-      "useLightweightMode must be used within a LightweightModeProvider"
+      "useLightweightMode must be used within a LightweightModeProvider",
     );
   }
   return context;

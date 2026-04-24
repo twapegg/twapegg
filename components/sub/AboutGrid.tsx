@@ -376,15 +376,17 @@ export default function AboutGrid() {
                 {activeExperience.period}
               </p>
               <ul className="mt-4 space-y-3">
-                {activeExperience.highlights.map((highlight, highlightIndex) => (
-                  <li
-                    key={highlightIndex}
-                    className="text-sm sm:text-base text-white/80 leading-relaxed flex items-start gap-3"
-                  >
-                    <span className="mt-[6px] h-2 w-2 rounded-full bg-gold shrink-0" />
-                    <span>{highlight}</span>
-                  </li>
-                ))}
+                {activeExperience.highlights.map(
+                  (highlight, highlightIndex) => (
+                    <li
+                      key={highlightIndex}
+                      className="text-sm sm:text-base text-white/80 leading-relaxed flex items-start gap-3"
+                    >
+                      <span className="mt-[6px] h-2 w-2 rounded-full bg-gold shrink-0" />
+                      <span>{highlight}</span>
+                    </li>
+                  ),
+                )}
               </ul>
             </motion.div>
           </div>
@@ -515,4 +517,3 @@ const icons = [
   <SiPytorch key="pytorch" />,
   <SiOpenai key="openai" />,
 ];
-

@@ -42,14 +42,18 @@ html {
   0% {
     border-color: rgb(255 255 255 / 0.2);
     box-shadow: none;
-  } 
+  }
   25% {
     border-color: rgb(127 199 186 / 0.8);
-    box-shadow: 0 0 30px rgb(127 199 186 / 0.4), 0 0 60px rgb(127 199 186 / 0.2);
+    box-shadow:
+      0 0 30px rgb(127 199 186 / 0.4),
+      0 0 60px rgb(127 199 186 / 0.2);
   }
   75% {
     border-color: rgb(127 199 186 / 0.8);
-    box-shadow: 0 0 30px rgb(127 199 186 / 0.4), 0 0 60px rgb(127 199 186 / 0.2);
+    box-shadow:
+      0 0 30px rgb(127 199 186 / 0.4),
+      0 0 60px rgb(127 199 186 / 0.2);
   }
   100% {
     border-color: rgb(255 255 255 / 0.2);
