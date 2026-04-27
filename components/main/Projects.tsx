@@ -22,6 +22,7 @@ export default function Projects() {
                   imageUrl={project.imageUrl}
                   imageAlt={project.imageAlt}
                   link={project.link}
+                  demoLink={project.demoLink}
                   year={project.year}
                 />
               ))

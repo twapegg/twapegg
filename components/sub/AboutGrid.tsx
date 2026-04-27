@@ -205,11 +205,8 @@ export default function AboutGrid() {
           <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/10 to-transparent" />
           <div className="absolute bottom-4 left-4 right-4">
             <h3 className="text-xl font-bold text-white drop-shadow-lg">
-              Stanley Altonaga
+              John Stanley Altonaga
             </h3>
-            <p className="text-white/90 text-sm font-medium drop-shadow-md">
-              Full-Stack | AI/ML
-            </p>
           </div>
         </div>
       </motion.div>
@@ -235,7 +232,10 @@ export default function AboutGrid() {
                 Silliman University
               </span>
             </a>
-            , building at the intersection of web development and AI/ML.
+            , building at the intersection of{" "}
+            <span className="text-navy font-semibold hover:text-navy/80 transition-colors duration-300 border-navy/30 hover:border-navy/60">
+              web development, automation, and AI.
+            </span>
           </p>
           <p className="text-sm sm:text-base md:text-lg flex items-center gap-2">
             <span>

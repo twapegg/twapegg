@@ -1,5 +1,6 @@
 "use client";
 
+import { cn } from "@/utils/cn";
 import React, { useRef, Suspense, useMemo } from "react";
 import { Canvas, useFrame } from "@react-three/fiber";
 import { Points, PointMaterial } from "@react-three/drei";
@@ -12,6 +13,7 @@ const Group = React.forwardRef<THREE.Group, any>((props, ref) => {
 Group.displayName = "Group";
 
 interface StarBackgroundProps {
+  starCount?: number;
   [key: string]: any;
 }
 
@@ -44,14 +46,26 @@ const generateSpherePositions = (
   return positions;
 };
 
-const StarBackground = (props: StarBackgroundProps) => {
+const StarBackground = ({
+  starCount = 3200,
+  ...props
+}: StarBackgroundProps) => {
   const pointsRef = useRef<THREE.Points>(null);
-  const sphere = useMemo(() => generateSpherePositions(5000, 1.2), []);
+  const sphere = useMemo(
+    () => generateSpherePositions(starCount, 1.2),
+    [starCount],
+  );
+  const frameBudgetRef = useRef(0);
 
   useFrame((_, delta) => {
+    frameBudgetRef.current += delta;
+    if (frameBudgetRef.current < 1 / 30) return;
+    const step = frameBudgetRef.current;
+    frameBudgetRef.current = 0;
+
     if (pointsRef.current) {
-      pointsRef.current.rotation.x -= delta / 10;
-      pointsRef.current.rotation.y -= delta / 15;
+      pointsRef.current.rotation.x -= step / 10;
+      pointsRef.current.rotation.y -= step / 15;
     }
   });
 
@@ -70,17 +84,42 @@ const StarBackground = (props: StarBackgroundProps) => {
   );
 };
 
-const StarsCanvas = () => (
-  <div className="pointer-events-none fixed inset-0 -z-10 h-screen w-full">
-    <Canvas
-      camera={{ position: [0, 0, 1] }}
-      onClick={(event) => event.stopPropagation()}
+interface StarsCanvasProps {
+  fixed?: boolean;
+  className?: string;
+}
+
+const StarsCanvas = ({ fixed = true, className }: StarsCanvasProps) => {
+  const isMobile =
+    typeof window !== "undefined" &&
+    window.matchMedia("(max-width: 768px)").matches;
+  const starCount = isMobile ? 1700 : 3200;
+
+  return (
+    <div
+      className={cn(
+        "pointer-events-none inset-0 h-full w-full opacity-70",
+        fixed ? "fixed z-0" : "absolute z-0",
+        className,
+      )}
     >
-      <Suspense fallback={null}>
-        <StarBackground />
-      </Suspense>
-    </Canvas>
-  </div>
-);
+      <Canvas
+        dpr={[0.8, 1.25]}
+        camera={{ position: [0, 0, 1] }}
+        gl={{
+          antialias: false,
+          depth: false,
+          stencil: false,
+          powerPreference: "low-power",
+        }}
+        onClick={(event) => event.stopPropagation()}
+      >
+        <Suspense fallback={null}>
+          <StarBackground starCount={starCount} />
+        </Suspense>
+      </Canvas>
+    </div>
+  );
+};
 
 export default StarsCanvas;

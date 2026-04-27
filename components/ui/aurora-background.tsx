@@ -11,38 +11,51 @@ export const AuroraBackground = ({
   showRadialGradient = true,
   ...props
 }: AuroraBackgroundProps) => {
+  const auroraVars = {
+    "--white-gradient":
+      "repeating-linear-gradient(100deg,var(--white) 0%,var(--white) 7%,transparent 10%,transparent 12%,var(--white) 16%)",
+    "--dark-gradient":
+      "repeating-linear-gradient(100deg,var(--black) 0%,var(--black) 7%,transparent 10%,transparent 12%,var(--black) 16%)",
+    "--aurora":
+      "repeating-linear-gradient(100deg,var(--yellow-900) 10%,var(--yellow-900) 15%,var(--orange-900) 20%,var(--yellow-900) 25%,var(--yellow-900) 30%)",
+  } as React.CSSProperties;
+
   return (
-    <main>
+    <main className="h-full w-full">
       <div
         className={cn(
-          "relative flex flex-col  h-[100vh] items-center justify-center bg-black  text-slate-950 transition-bg z-[-1]",
-          className
+          "relative flex h-full w-full flex-col items-center justify-center bg-black text-slate-950 transition-bg",
+          className,
         )}
         {...props}
       >
         <div className="absolute inset-0 overflow-hidden">
           <div
-            //   I'm sorry but this is what peak developer performance looks like // trigger warning
+            style={{
+              ...auroraVars,
+              backgroundImage: "var(--dark-gradient), var(--aurora)",
+              backgroundSize: "100%, 200%",
+              backgroundPosition: "50% 50%, 50% 50%",
+              maskImage: showRadialGradient
+                ? "radial-gradient(ellipse at 100% 0%, black 10%, transparent 70%)"
+                : "none",
+            }}
             className={cn(
               `
-            [--white-gradient:repeating-linear-gradient(100deg,var(--white)_0%,var(--white)_7%,var(--transparent)_10%,var(--transparent)_12%,var(--white)_16%)]
-            [--dark-gradient:repeating-linear-gradient(100deg,var(--black)_0%,var(--black)_7%,var(--transparent)_10%,var(--transparent)_12%,var(--black)_16%)]
-            [--aurora:repeating-linear-gradient(100deg,var(--yellow-900)_10%,var(--yellow-900)_15%,var(--orange-900)_20%,var(--yellow-900)_25%,var(--yellow-900)_30%)]
-            [background-image:var(--dark-gradient),var(--aurora)]
-            [background-size:100%,_200%]0
-            [background-position:50%_50%,50%_50%]
-            filter blur-[10px] invert
-            after:content-[""] after:absolute after:inset-0
-            after:[background-image:var(--dark-gradient),var(--aurora)]
-            after:[background-size:300%,_100%] 
-            after:animate-aurora after:[background-attachment:fixed] after:mix-blend-difference
+            filter blur-sm invert
             pointer-events-none
-            absolute -inset-[10px] opacity-50 will-change-transform`,
-
-              showRadialGradient &&
-                `[mask-image:radial-gradient(ellipse_at_100%_0%,black_10%,var(--transparent)_70%)]`
+            absolute -inset-2.5 opacity-50 will-change-transform`,
             )}
-          ></div>
+          >
+            <div
+              style={{
+                ...auroraVars,
+                backgroundImage: "var(--dark-gradient), var(--aurora)",
+                backgroundSize: "300%, 100%",
+              }}
+              className="absolute inset-0 animate-aurora motion-reduce:animate-none mix-blend-difference"
+            />
+          </div>
         </div>
       </div>
     </main>

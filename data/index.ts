@@ -1,12 +1,26 @@
 export const projects = [
   {
+    title: "Tanglaw",
+    description:
+      "Award-winning digital safety application from Can You HackIT 2025 that uses screenshots, OCR, and LLM-driven moderation to detect and flag harmful content in near real time.",
+    skills: ["Next.js", "Electron", "Firebase", "Flask", "OpenAI API", "OCR"],
+    imageUrl: "/thumbnails/tanglaw.png",
+    imageAlt: "Tanglaw Project",
+    link: "https://github.com/twapegg/tanglaw-backend",
+    demoLink:
+      "https://drive.google.com/file/d/1VVPdlCKzMxmQEFFFpfFYhIsy9DWS9Gee/view?usp=sharing",
+    year: 2026,
+  },
+  {
     title: "Bant.ai",
     description:
       "Award-winning digital safety application from Can You HackIT 2025 that uses screenshots, OCR, and LLM-driven moderation to detect and flag harmful content in near real time.",
     skills: ["Next.js", "Electron", "Firebase", "Flask", "OpenAI API", "OCR"],
-    imageUrl: "/bantai.png",
+    imageUrl: "/thumbnails/bantai.png",
     imageAlt: "Bant.ai Project",
     link: "https://hackathon-bantai.vercel.app/",
+    demoLink:
+      "https://drive.google.com/file/d/10HM6bBwtfndGoxZHf4W-Aw4-5g9Wfz73/view?usp=sharing",
     year: 2025,
   },
   {
@@ -14,9 +28,10 @@ export const projects = [
     description:
       "Machine learning application for early Alzheimer's detection using CNN models. Built with PyTorch for accurate image analysis and Next.js for a user-friendly interface, helping healthcare professionals with diagnostic support.",
     skills: ["Next.js", "Firebase", "Python Flask", "CNN Model (Pytorch)"],
-    imageUrl: "/alzaware.png",
+    imageUrl: "/thumbnails/alzaware.png",
     imageAlt: "AlzAware Project",
     link: "https://alzaware.vercel.app/",
+    demoLink: "https://alzaware.vercel.app/",
     year: 2024,
   },
   {
@@ -24,9 +39,10 @@ export const projects = [
     description:
       "Modern web application showcasing elegant UI/UX design principles. Features responsive design, smooth animations, and efficient data management with MongoDB backend integration.",
     skills: ["Next.js", "MongoDB"],
-    imageUrl: "/aphrodite.png",
+    imageUrl: "/thumbnails/aphrodite.png",
     imageAlt: "Aphrodite Project",
     link: "https://aphrodite-orpin.vercel.app/",
+    demoLink: "https://aphrodite-orpin.vercel.app/",
     year: 2024,
   },
 
@@ -35,9 +51,10 @@ export const projects = [
     description:
       "Full-stack web application built with React and Express.js, featuring comprehensive user management, real-time data processing, and seamless MongoDB integration for optimal performance.",
     skills: ["React", "MongoDB", "ExpressJS"],
-    imageUrl: "/elysian.png",
+    imageUrl: "/thumbnails/elysian.png",
     imageAlt: "Elysian Project",
     link: "https://elysian-theta.vercel.app/",
+    demoLink: "https://elysian-theta.vercel.app/",
     year: 2023,
   },
 ];

@@ -9,7 +9,7 @@ export default function Home() {
       <Hero
         title="hello world!"
         subtitle="I'm Stanley, and I dabble in"
-        highlight="full-stack development and AI/ML!"
+        highlight="full-stack development, ai & automations!"
       />
       <About />
       <Projects />
