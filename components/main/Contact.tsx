@@ -38,7 +38,7 @@ export default function Contact() {
             onClick={scrollToConnect}
             className="bg-grey/10 border border-white/50 backdrop-filter backdrop-blur-[1.25px] rounded-3xl py-10 px-16 text-5xl text-white hover:border-gold hover:bg-gold/10 hover:text-gold hover:font-bold transition-all duration-500 cursor-pointer"
           >
-            hit me up @ socials <span>{"->"}</span>
+            hit me up @ socials
           </button>
         </Reveal>
       </div>

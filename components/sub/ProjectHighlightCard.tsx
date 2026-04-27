@@ -4,7 +4,7 @@ import { motion, useInView } from "framer-motion";
 import { CardBody, CardContainer, CardItem } from "../ui/3d-card";
 import Image from "next/image";
 import Link from "next/link";
-import { FaArrowUpRightFromSquare, FaGlobe, FaVideo } from "react-icons/fa6";
+import { FaArrowUpRightFromSquare } from "react-icons/fa6";
 import TechKeyword from "../ui/tech-keyword";
 import AnimatedText from "../ui/animated-text";
 import { useRef } from "react";

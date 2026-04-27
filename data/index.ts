@@ -2,8 +2,15 @@ export const projects = [
   {
     title: "Tanglaw",
     description:
-      "Award-winning digital safety application from Can You HackIT 2025 that uses screenshots, OCR, and LLM-driven moderation to detect and flag harmful content in near real time.",
-    skills: ["Next.js", "Electron", "Firebase", "Flask", "OpenAI API", "OCR"],
+      "Initially built for my thesis, Tanglaw is a multi-pipeline facial recognition system built for low-light environments, utilizing retinaface & mtcnn for facial detection, and mobilefacenet & arcface for recognition.",
+    skills: [
+      "Next.js",
+      "Flask",
+      "RetinaFace",
+      "MTCNN",
+      "MobileFaceNet",
+      "ArcFace",
+    ],
     imageUrl: "/thumbnails/tanglaw.png",
     imageAlt: "Tanglaw Project",
     link: "https://github.com/twapegg/tanglaw-backend",
